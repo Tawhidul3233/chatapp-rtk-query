@@ -26,17 +26,18 @@
       "users": [
         {
           "email": "sumit@learnwithsumit.com",
-          "name": "Sumit Saha",
+          "name": "sumit",
           "id": 1
         },
         {
           "email": "akash@learnwithsumit.com",
+          "password": "$2a$10$CtHS.yCGS80jiuZx8yKEI.5zdiZykHF/6aPTDqpHl6ZqEFGISOHKO",
           "name": "Akash Ahmed",
           "id": 2
         }
       ],
-      "message": "How are you?",
-      "timestamp": 1661976143678
+      "message": "no",
+      "timestamp": 1680169471228
     },
     {
       "id": 2,
@@ -55,10 +56,27 @@
       ],
       "message": "How are you?",
       "timestamp": 1661976143678
+    },
+    {
+      "participants": "sumit@learnwithsumit.com-saad@learnwithsumit.com",
+      "users": [
+        {
+          "email": "sumit@learnwithsumit.com",
+          "name": "sumit",
+          "id": 1
+        },
+        {
+          "email": "saad@learnwithsumit.com",
+          "password": "$2a$10$CtHS.yCGS80jiuZx8yKEI.5zdiZykHF/6aPTDqpHl6ZqEFGISOHKO",
+          "name": "Saad Hasan",
+          "id": 3
+        }
+      ],
+      "message": "working",
+      "timestamp": 1680170098451,
+      "id": 3
     }
   ],
-
-
   "messages": [
     {
       "id": 1,
@@ -123,6 +141,58 @@
       },
       "message": "Nothing",
       "timestamp": 1661976143878
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "conversationId": 3,
+      "message": "hello ko",
+      "timestamp": 1680170014484,
+      "sender": {
+        "email": "sumit@learnwithsumit.com",
+        "name": "sumit",
+        "id": 1
+      },
+      "receiver": {
+        "email": "saad@learnwithsumit.com",
+        "password": "$2a$10$CtHS.yCGS80jiuZx8yKEI.5zdiZykHF/6aPTDqpHl6ZqEFGISOHKO",
+        "name": "Saad Hasan",
+        "id": 3
+      },
+      "id": 11
+    },
+    {
+      "conversationId": 3,
+      "message": "working",
+      "timestamp": 1680170098451,
+      "sender": {
+        "email": "sumit@learnwithsumit.com",
+        "name": "sumit",
+        "id": 1
+      },
+      "receiver": {
+        "email": "saad@learnwithsumit.com",
+        "password": "$2a$10$CtHS.yCGS80jiuZx8yKEI.5zdiZykHF/6aPTDqpHl6ZqEFGISOHKO",
+        "name": "Saad Hasan",
+        "id": 3
+      },
+      "id": 12
     }
   ]
 }

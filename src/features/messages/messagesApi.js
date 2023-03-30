@@ -10,7 +10,8 @@ export const messagesApi = apiSlice.injectEndpoints({
         url: '/messages',
         method: 'POST',
         body: data
-      })
+      }),
+
     })
 
   })
