@@ -40,21 +40,43 @@ export const conversationsApi = apiSlice.injectEndpoints({
         body: data
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const conversation = await queryFulfilled;
-        // console.log(arg)
-        const users = arg?.data.users;
-        const senderUser = users.find(user => user.email === arg?.senderEmail);
-        const receiverUser = users.find(user => user.email !== arg?.senderEmail)
 
-        if (conversation?.data?.id) {
-          dispatch(messagesApi.endpoints.addeMssage.initiate({
-            conversationId: conversation?.data?.id,
-            sender: senderUser,
-            receiver: receiverUser,
-            message: arg?.data?.message,
-            timestamp: arg?.data?.timestamp
-          }))
+        // clinte site optimistic cash update
+        const patchResult = dispatch(apiSlice.util.updateQueryData('getConversations', arg.senderEmail, (draft) => {
+          const draftConversation = draft.find(c => c.id == arg.id);
+          draftConversation.message = arg.data.message;
+          draftConversation.timestamp = arg.data.timestamp;
+        }))
+        // optimistic cash update end
+
+        try {
+          const conversation = await queryFulfilled;
+          // console.log(arg)
+          if (conversation?.data?.id) {
+
+            const users = arg?.data.users;
+            const senderUser = users.find(user => user.email === arg?.senderEmail);
+            const receiverUser = users.find(user => user.email !== arg?.senderEmail)
+
+            const res = await dispatch(messagesApi.endpoints.addeMssage.initiate({
+              conversationId: conversation?.data?.id,
+              sender: senderUser,
+              receiver: receiverUser,
+              message: arg?.data?.message,
+              timestamp: arg?.data?.timestamp
+            })).unwrap();
+
+            // pessimistic cash update 
+            dispatch(apiSlice.util.updateQueryData('getMessages', res.conversationId.toString(), (draft) => {
+              draft.push(res)
+            }))
+            // pessimistic update end
+
+          }
+        } catch (error) {
+          patchResult.undo()
         }
+
       }
     }),
 
